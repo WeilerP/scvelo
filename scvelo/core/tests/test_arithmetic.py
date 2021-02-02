@@ -6,7 +6,7 @@ from hypothesis.extra.numpy import arrays
 
 import numpy as np
 from numpy import ndarray
-from numpy.testing import assert_array_equal
+from numpy.testing import assert_almost_equal, assert_array_equal
 
 from scvelo.core import clipped_log, invert, prod_sum, sum
 
@@ -42,8 +42,14 @@ class TestClippedLog:
         a_logged = clipped_log(a, lb=lb, ub=ub, eps=eps)
 
         assert a_logged.shape == a.shape
-        assert (a_logged >= np.log(lb + eps)).all()
-        assert (a_logged <= np.log(ub - eps)).all()
+        if (a <= lb).any():
+            assert_almost_equal(a_logged - np.log(lb + eps), 0)
+        else:
+            assert (a_logged >= np.log(lb + eps)).all()
+        if (a >= ub).any():
+            assert_almost_equal(a_logged - np.log(ub - eps), 0)
+        else:
+            assert (a_logged <= np.log(ub - eps)).all()
 
     @given(
         a=arrays(
@@ -76,8 +82,14 @@ class TestClippedLog:
         a_logged = clipped_log(a, lb=lb, ub=ub, eps=eps)
 
         assert a_logged.shape == a.shape
-        assert (a_logged >= np.log(lb + eps)).all()
-        assert (a_logged <= np.log(ub - eps)).all()
+        if (a <= lb).any():
+            assert_almost_equal(a_logged - np.log(lb + eps), 0)
+        else:
+            assert (a_logged >= np.log(lb + eps)).all()
+        if (a >= ub).any():
+            assert_almost_equal(a_logged - np.log(ub - eps), 0)
+        else:
+            assert (a_logged <= np.log(ub - eps)).all()
 
 
 class TestInvert:
