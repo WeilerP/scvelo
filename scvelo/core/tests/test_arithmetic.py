@@ -29,7 +29,7 @@ class TestClippedLog:
             unique=True,
         ),
         eps=st.floats(
-            min_value=0,
+            min_value=1e-6,
             max_value=1,
             allow_infinity=False,
             allow_nan=False,
@@ -69,7 +69,7 @@ class TestClippedLog:
             unique=True,
         ),
         eps=st.floats(
-            min_value=0,
+            min_value=1e-6,
             max_value=1,
             allow_infinity=False,
             allow_nan=False,
