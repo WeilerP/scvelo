@@ -43,11 +43,11 @@ class TestClippedLog:
 
         assert a_logged.shape == a.shape
         if (a <= lb).any():
-            assert_almost_equal((a_logged - np.log(lb + eps)).abs().min(), 0)
+            assert_almost_equal(np.abs(a_logged - np.log(lb + eps)).min(), 0)
         else:
             assert (a_logged >= np.log(lb + eps)).all()
         if (a >= ub).any():
-            assert_almost_equal((a_logged - np.log(ub - eps)).abs().min(), 0)
+            assert_almost_equal(np.abs(a_logged - np.log(ub - eps)).min(), 0)
         else:
             assert (a_logged <= np.log(ub - eps)).all()
 
@@ -85,11 +85,11 @@ class TestClippedLog:
 
         assert a_logged.shape == a.shape
         if (a <= lb).any():
-            assert_almost_equal((a_logged - np.log(lb + eps)).abs().min(), 0)
+            assert_almost_equal(np.abs(a_logged - np.log(lb + eps)).min(), 0)
         else:
             assert (a_logged >= np.log(lb + eps)).all()
         if (a >= ub).any():
-            assert_almost_equal((a_logged - np.log(ub - eps)).abs().min(), 0)
+            assert_almost_equal(np.abs(a_logged - np.log(ub - eps)).min(), 0)
         else:
             assert (a_logged <= np.log(ub - eps)).all()
 
