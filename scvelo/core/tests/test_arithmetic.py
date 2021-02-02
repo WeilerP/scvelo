@@ -29,11 +29,10 @@ class TestClippedLog:
             unique=True,
         ),
         eps=st.floats(
-            min_value=0,
+            min_value=1e-6,
             max_value=1,
             allow_infinity=False,
             allow_nan=False,
-            exclude_min=True,
         ),
     )
     def test_flat_arrays(self, a: ndarray, bounds: List[float], eps: float):
@@ -64,11 +63,10 @@ class TestClippedLog:
             unique=True,
         ),
         eps=st.floats(
-            min_value=0,
+            min_value=1e-6,
             max_value=1,
             allow_infinity=False,
             allow_nan=False,
-            exclude_min=True,
         ),
     )
     def test_2d_arrays(self, a: ndarray, bounds: List[float], eps: float):
