@@ -27,7 +27,7 @@ def clipped_log(x: ndarray, lb: float = 0, ub: float = 1, eps: float = 1e-6) -> 
 
     """
 
-    return np.log(np.clip(x, lb + eps, ub - eps))
+    return np.log(np.clip(x, lb + eps, ub - eps, dtype="float32"), dtype="float32")
 
 
 def invert(x: ndarray) -> ndarray:
