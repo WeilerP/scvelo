@@ -38,7 +38,7 @@ class TestClippedLog:
 
         assert a_logged.shape == a.shape
         assert np.greater_equal(a_logged, np.log(lb + eps)).all()
-        assert np.greater_equal(a_logged, np.log(ub - eps)).all()
+        assert np.smaller_equal(a_logged, np.log(ub - eps)).all()
 
     @given(
         a=arrays(
@@ -66,8 +66,8 @@ class TestClippedLog:
         a_logged = clipped_log(a, lb=lb, ub=ub, eps=eps)
 
         assert a_logged.shape == a.shape
-        assert (a_logged >= np.log(lb + eps)).all()
-        assert (a_logged <= np.log(ub - eps)).all()
+        assert np.greater_equal(a_logged, np.log(lb + eps)).all()
+        assert np.smaller_equal(a_logged, np.log(ub - eps)).all()
 
 
 class TestInvert:
